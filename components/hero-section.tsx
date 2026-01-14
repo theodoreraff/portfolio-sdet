@@ -89,7 +89,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-mono text-primary bg-primary/10 rounded-full border border-primary/20">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Software Development Engineer in Test
+            Software Quality Assurance Engineer
           </span>
         </motion.div>
 
@@ -127,8 +127,8 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          I'm an SDET passionate about <strong>Cloud infrastructure</strong> and reliable automation.
-          I build frameworks that keep your app fast, scalable, and safe from any <strong>sus activity</strong>.
+          I'm an SDET passionate about <strong className="text-foreground">Cloud infrastructure</strong> and reliable automation.
+          I build frameworks that keep your app fast, scalable, and safe from any <strong className="text-foreground">sus activity</strong>.
         </motion.p>
         {/* Terminal status bar */}
         <motion.div
