@@ -8,6 +8,20 @@ import { Terminal, ChevronRight } from "lucide-react"
 
 const terminalLines = ["> Initializing Theo_OS...", "> Loading Skills...", "> System Ready."]
 
+const hammerAnimation = {
+  rest: { rotate: 0 },
+  hit: {
+    rotate: [0, -30, 50, 15, 0],
+    transition: {
+      duration: 0.7,
+      ease: "easeInOut",
+      times: [0, 0.3, 0.45, 0.7, 1],
+      repeat: Infinity,
+      repeatDelay: 2.5,
+    },
+  },
+}
+
 export function HeroSection() {
   const [currentLine, setCurrentLine] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
@@ -85,7 +99,26 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl sm:text-5xl md:text-7xl font-mono font-bold tracking-tight mb-6 text-balance"
         >
-          Breaking Code <span className="text-primary">to Make It Stronger</span>
+          Hi i'm{" "}
+          {/* Gunakan inline-flex agar teks dan emoji sejajar rapi */}
+          <span className="text-primary inline-flex items-center">
+            Theodore
+            {/* Bungkus emoji dengan motion.span */}
+            <motion.span
+              // PENTING: origin-bottom-right membuat titik putar di gagang bawah
+              // inline-block diperlukan agar transform berfungsi
+              className="ml-2 origin-bottom-right inline-block cursor-grab active:cursor-grabbing"
+              // Pasang animasi yang sudah didefinisikan di atas
+              variants={hammerAnimation}
+              initial="rest"
+              animate="hit"
+              // Opsional: Tambahkan efek saat di-hover agar lebih interaktif
+              whileHover={{ scale: 1.2, rotate: -20, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.9 }}
+            >
+              🔨
+            </motion.span>
+          </span>
         </motion.h1>
 
         <motion.p
@@ -94,10 +127,9 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          I craft robust test architectures and hunt bugs before they hunt users. Specializing in automation,
-          performance testing, and quality engineering.
+          I'm an SDET passionate about <strong>Cloud infrastructure</strong> and reliable automation.
+          I build frameworks that keep your app fast, scalable, and safe from any <strong>sus activity</strong>.
         </motion.p>
-
         {/* Terminal status bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -184,11 +216,10 @@ function MagneticButton({
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15 }}
-      className={`relative px-6 py-3 font-mono text-sm rounded-lg transition-colors ${
-        variant === "primary"
-          ? "bg-primary text-primary-foreground hover:bg-primary/90"
-          : "border border-border bg-card hover:bg-secondary text-foreground"
-      }`}
+      className={`relative px-6 py-3 font-mono text-sm rounded-lg transition-colors ${variant === "primary"
+        ? "bg-primary text-primary-foreground hover:bg-primary/90"
+        : "border border-border bg-card hover:bg-secondary text-foreground"
+        }`}
     >
       {children}
     </motion.a>

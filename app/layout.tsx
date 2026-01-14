@@ -8,9 +8,7 @@ const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const _geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
 
 export const metadata: Metadata = {
-  title: "Theo | SDET Portfolio",
-  description: "Breaking Code to Make It Stronger - Software Development Engineer in Test",
-    generator: 'v0.app'
+  title: "Theodore's Portfolio",
 }
 
 export default function RootLayout({
