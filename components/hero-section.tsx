@@ -6,7 +6,14 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { Terminal, ChevronRight } from "lucide-react"
 
-const terminalLines = ["> Initializing Theo_OS...", "> Loading Skills...", "> System Ready."]
+const terminalLines = [
+  "$ npm run test",
+  "✓ Running test suite...",
+  "✓ 245 tests passed",
+  "✓ Coverage: 92%",
+  "$ git status",
+  "✓ All systems operational"
+]
 
 const hammerAnimation = {
   rest: { rotate: 0 },
@@ -141,29 +148,65 @@ export function HeroSection() {
         >
           <div className="rounded-xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-primary/5">
             {/* Terminal header */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-secondary/30">
-              <Terminal className="w-4 h-4 text-primary" />
-              <span className="text-sm font-mono text-muted-foreground">theo@portfolio:~</span>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-secondary/30">
+              <div className="flex items-center gap-2">
+                <Terminal className="w-4 h-4 text-primary" />
+                <span className="text-sm font-mono text-muted-foreground">theodore@portfolio</span>
+                <span className="text-muted-foreground/50">:</span>
+                <span className="text-sm font-mono text-accent">~/projects</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
             </div>
             {/* Terminal body */}
-            <div className="p-4 font-mono text-sm text-left space-y-1 min-h-[120px]">
-              {terminalLines.slice(0, currentLine).map((line, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center gap-2"
-                >
-                  <ChevronRight className="w-3 h-3 text-accent" />
-                  <span className="text-foreground">{line.slice(2)}</span>
-                  {line.includes("Ready") && <span className="text-accent">✓</span>}
-                </motion.div>
-              ))}
+            <div className="p-4 font-mono text-sm text-left space-y-2 min-h-[160px] bg-gradient-to-b from-card/50 to-card/30">
+              {terminalLines.slice(0, currentLine).map((line, index) => {
+                const isCommand = line.startsWith("$")
+                const isSuccess = line.startsWith("✓")
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="flex items-start gap-2"
+                  >
+                    {isCommand ? (
+                      <>
+                        <span className="text-primary font-bold">❯</span>
+                        <span className="text-foreground">{line.slice(2)}</span>
+                      </>
+                    ) : isSuccess ? (
+                      <>
+                        <span className="text-accent">✓</span>
+                        <span className="text-muted-foreground">{line.slice(2)}</span>
+                      </>
+                    ) : (
+                      <span className="text-foreground">{line}</span>
+                    )}
+                  </motion.div>
+                )
+              })}
               {currentLine < terminalLines.length && (
-                <div className="flex items-center gap-2">
-                  <ChevronRight className="w-3 h-3 text-accent" />
-                  <span className="text-foreground">{displayedText.slice(2)}</span>
-                  <span className={`${showCursor ? "opacity-100" : "opacity-0"} text-primary`}>▌</span>
+                <div className="flex items-start gap-2">
+                  {displayedText.startsWith("$") ? (
+                    <>
+                      <span className="text-primary font-bold">❯</span>
+                      <span className="text-foreground">{displayedText.slice(2)}</span>
+                    </>
+                  ) : displayedText.startsWith("✓") ? (
+                    <>
+                      <span className="text-accent">✓</span>
+                      <span className="text-muted-foreground">{displayedText.slice(2)}</span>
+                    </>
+                  ) : (
+                    <span className="text-foreground">{displayedText}</span>
+                  )}
+                  <span className={`${showCursor ? "opacity-100" : "opacity-0"} text-primary transition-opacity`}>▌</span>
                 </div>
               )}
             </div>
