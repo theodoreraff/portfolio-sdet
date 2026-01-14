@@ -127,10 +127,10 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          I'm a Software Development Engineer in Test (SDET) who values strong{" "}
-          <strong className="text-foreground">product ownership</strong>, with hands-on experience in manual and automated
-          testing, focused on improving product quality, building robust test frameworks, and supporting reliable releases
-          through <strong className="text-foreground">CI/CD and cloud technologies</strong>.
+          I'm a Software Development Engineer in Test (SDET) who's passionate about{" "}
+          <strong className="text-foreground">manual and automated testing</strong>, building reliable automation frameworks,
+          improving overall test quality, and enabling scalable, reliable testing through{" "}
+          <strong className="text-foreground">CI/CD pipelines and cloud-based infrastructure</strong>.
         </motion.p>
         {/* Terminal status bar */}
         <motion.div
