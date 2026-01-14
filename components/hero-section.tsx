@@ -127,10 +127,9 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          I turn <strong className="text-foreground">quality into code</strong> and{" "}
-          <strong className="text-foreground">bugs into lessons</strong>.
-          Specializing in test automation and CI/CD pipelines that ship{" "}
-          <strong className="text-foreground">confidence, not just features</strong>.
+          Breaking things on purpose so they don't break in production.{" "}
+          I write tests that actually make sense and build{" "}
+          <strong className="text-foreground">automation that just works</strong>.
         </motion.p>
         {/* Terminal status bar */}
         <motion.div
